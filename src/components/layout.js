@@ -23,6 +23,23 @@ const Main = styled.main`
   }
 `
 
+export const Container = styled.section`
+    align-items: center;
+    display: flex;
+    height: ${props => props.heightSm || 'auto'};
+    flex-direction: ${props => props.flexDirSm || 'column'};
+    justify-content: center;
+    margin: ${props => props.margin || '0'};
+    padding: ${props => props.padding || '0'};
+    width: 100%;
+
+    @media(min-width: 1024px) {
+        flex-direction: ${props => props.flexDirLg || 'row'};
+        height: ${props => props.heightLg || '40vh'};
+        justify-content: ${props => props.justifyLg || 'center'};
+    }
+`
+
 const Footer = () => (
   <footer className="w-full text-center p-4 bg-black text-lightgrey z-50 fixed bottom-0 lg:relative lg:bottom-auto">
     <div className="lg:w-1/2 mx-auto flex justify-between">
