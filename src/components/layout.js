@@ -1,12 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import is from 'is_js'
-
 import '../global.css'
 import styled from 'styled-components'
 
-import Header, { Socials } from "./header"
+import Header from "./header"
+
+import Instagram from '../assets/svg/instagram.inline.svg'
+import Facebook from '../assets/svg/facebook.inline.svg'
 
 
 const Background = styled.div`
@@ -14,12 +15,19 @@ const Background = styled.div`
 `
 
 const Main = styled.main`
-  min-height: calc(100vh - 112px);
+  position: relative;
+  max-height: calc(100vh - 112px);
   margin: 0 auto;
   padding: 1rem;
+  scroll-behavior: touch;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
 
-  @media (max-width: 1024px) {
-    max-height: calc(100vh - 112px);
+  @media (min-width: 1024px) {
+    min-height: calc(100vh - 112px);
+    overflow: visible;
+    width: 50%;
   }
 `
 
@@ -40,6 +48,17 @@ export const Container = styled.section`
     }
 `
 
+export const Socials = () => (
+  <div className="pl-px2 w-1/2">
+    <a href="#" className="text-white mr-4 inline">
+      <Instagram className="fill-current w-4 h-4 inline" />
+    </a>
+    <a href="#" className="text-white inline">
+      <Facebook className="fill-current w-4 h-4 inline" />
+    </a>
+  </div>
+)
+
 const Footer = () => (
   <footer className="w-full text-center p-4 bg-black text-lightgrey z-50 fixed bottom-0 lg:relative lg:bottom-auto">
     <div className="lg:w-1/2 mx-auto flex justify-between">
@@ -50,15 +69,13 @@ const Footer = () => (
 )
 
 const Layout = ({ children }) => {
-  const isClient = typeof window !== 'undefined';
-  const safari = is.safari();
 
   return(
-    <Background safari={safari}>
+    <Background>
       <div className="relative">
         <div id="top"></div>
         <Header />
-        <Main className="lg:w-1/2 w-full relative overflow-scroll scrolling-touch lg:overflow-visible">{children}</Main>
+        <Main>{children}</Main>
         <Footer />
       </div>
     </Background>
